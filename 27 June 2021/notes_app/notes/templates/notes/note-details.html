@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header>
+        <nav>
+            <ul>
+                <li class="img"><img src="{% static 'images/note.png' %}" alt=""/></li>
+                <li><a href="{% url 'page-home' %}">Notes</a></li>
+                <li class="right">
+                    <a href="{% url 'note-create' %}">Add Note</a>
+                    <a href="{% url 'page-profile' %}">Profile</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="body">
+        <h1>Note Details</h1>
+
+        <div class="note-details-container">
+            <h2>{{ note.title }}</h2>
+            <img class="detail-img" src="{{ note.image_url }}" alt="note-image"/>
+            <div>
+                <p>Content</p>
+            </div>
+            <p>
+                {{ note.content }}
+            </p>
+            <div class="right">
+                <a class="button edit" href="{% url 'note-edit' note.id %}">Edit</a>
+                <a class="button delete" href="{% url 'note-delete' note.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
