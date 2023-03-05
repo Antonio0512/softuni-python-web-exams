@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <section id="dashboard-page" class="dashboard">
+        {% if not books %}
+            <h1>Dashboard</h1>
+            <p class="no-books">No books in database!</p>
+                {% else %}
+            <ul class="my-books-list">
+                {% for book in books %}
+                    <li class="myBooks">
+                        <h3>{{ book.title }}</h3>
+                        <p>Type: {{ book.type }}</p>
+                        <p class="img"><img src="{{ book.image }}" alt=""></p>
+                        <a class="button" href="{% url 'book-details' book.pk %}">Details</a>
+                    </li>
+                {% endfor %}
+                    </ul>
+        {% endif %}
+    </section>
+
+{% endblock %}
