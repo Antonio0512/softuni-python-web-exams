@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<header>
+
+        <h1><a class="home" href="{% url 'page-home' %}">GamesPlay</a></h1>
+        <nav>
+            <a href="{% url 'page-dashboard' %}">Dashboard</a>
+            <a href="{% url 'game-create' %}">Create Game</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+        </nav>
+    </header>
+
+<section id="create-page" class="auth">
+    <div class="container">
+        <h1>Are you sure you want to delete your profile?</h1>
+
+        <form id='delete' method="POST">
+            {{ form }}
+            {% csrf_token %}
+            <input class="btn submit" type="submit" value="Delete">
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}
