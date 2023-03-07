@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <header>
+        <h1><a class="index-navigation" href="{% url 'page-home' %}"><span>C</span>ARS <span>C</span>OLLECTION</a>
+        </h1>
+        <nav>
+            <a href="{% url 'page-catalogue' %}">Catalogue</a>
+            <a href="{% url 'car-create' %}">Create Car</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+        </nav>
+    </header>
+
+    {% if not cars %}
+        <p class="no-articles">No cars yet</p>
+
+    {% else %}
+        <section id="catalogue">
+        <h1>Total cars: {{ cars.count }}</h1>
+        {% for car in cars %}
+            <div class="car-card">
+                <div class="image-wrap">
+                    <img src="{{ car.image_url }}"
+                         alt="{{ car.type }}">
+                </div>
+                <h3>{{ car.type }}</h3>
+                <h1>{{ car.model }}</h1>
+                <div class="details-buttons">
+                    <a href="{% url 'car-details' car.id %}" class="details-btn">Details</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</section>
+
+{% endblock %}

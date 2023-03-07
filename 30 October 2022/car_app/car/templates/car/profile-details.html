@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <header>
+        <!-- Navigation Bar -->
+        <h1><a class="index-navigation" href="{% url 'page-home' %}"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
+        <nav>
+            <a href="{% url 'page-catalogue' %}">Catalogue</a>
+            <a href="{% url 'car-create' %}">Create Car</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+        </nav>
+    </header>
+
+    <section id="car-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+            <div class="car-header">
+                {% if not profile.profile_picture %}
+                    <img class="car-img" src="{% static 'images/default-profile.png' %}" alt='profile-image'/>
+                {% else %}
+                    <img class="car-img" src="{{ profile.profile_picture }}" alt='profile-image'/>
+                {% endif %}
+
+                {% if profile.first_name and not profile.last_name %}
+                <h1>{{ profile.first_name }}</h1>
+                {% elif not profile.first_name and profile.last_name %}
+                <h1>{{ profile.last_name }}</h1>
+                {% elif profile.first_name and profile.last_name %}
+                <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
+                {% endif %}
+
+                <p class="description">Username: {{ profile.username }}</p>
+                <p class="description">Email: {{ profile.email }}</p>
+                <p class="description">Age: {{ profile.age }}</p>
+                <p class="description">Total price: {{ cars_sum|floatformat:3 }}</p>
+                <div class="buttons">
+                    <a href="{% url 'profile-edit' %}" class="edit-button">Edit</a>
+                    <a href="{% url 'profile-delete' %}" class="delete-button">Delete</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

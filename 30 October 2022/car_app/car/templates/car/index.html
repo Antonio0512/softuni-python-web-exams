@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header>
+
+
+        <h1><a class="index-navigation" href="{% url 'page-home' %}"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
+        <nav>
+
+            {% if not profile %}
+                <a href="{% url 'profile-create' %}">Create Profile</a>
+
+            {% else %}
+                <a href="{% url 'page-catalogue' %}">Catalogue</a>
+                <a href="{% url 'car-create' %}">Create Car</a>
+                <a href="{% url 'profile-details' %}">Profile</a>
+
+            {% endif %}
+        </nav>
+    </header>
+
+    <section id="index-headline">
+        <div class="index-message">
+            <h2>Our <span>cars</span> collection is expecting you!</h2>
+        </div>
+        <img src="{% static 'images/car-index.png' %}" alt="car">
+    </section>
+
+{% endblock %}

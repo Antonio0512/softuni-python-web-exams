@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <header>
+        <h1><a class="index-navigation" href="{% url 'page-home' %}"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
+        <nav>
+            <a href="{% url 'page-catalogue' %}">Catalogue</a>
+            <a href="{% url 'car-create' %}">Create Car</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+        </nav>
+    </header>
+
+    <section id="delete-page" class="auth">
+        <form id="delete" method="POST">
+            <div class="container">
+
+                <h1>Delete Car</h1>
+                {{ form }}
+                {% csrf_token %}
+                <input class="btn submit" type="submit" value="Delete Car">
+
+            </div>
+        </form>
+    </section>
+
+{% endblock %}
