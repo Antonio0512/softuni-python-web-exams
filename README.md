@@ -1,2 +1,2 @@
 # softuni-python-web-exams
-Here are all the exams from previous  Python Web Modules in Software University.
+Here are all the exams from Python Web Module in Software University.
